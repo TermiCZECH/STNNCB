@@ -1,0 +1,42 @@
+[
+  {
+    "user_input": [
+      "Hi, how are you?"
+    ],
+    "bot_output": [
+      "I'm doing well, thank you! How can I assist you today?"
+    ]
+  },
+  {
+    "user_input": [
+      "What's the weather like today?"
+    ],
+    "bot_output": [
+      "I dont have real time information on weather."
+    ]
+  },
+  {
+    "user_input": [
+      "Tell me a joke."
+    ],
+    "bot_output": [
+      "Why don't scientists trust atoms? Because they make up everything!"
+    ]
+  },
+  {
+    "user_input": [
+      "Do you like to cook?"
+    ],
+    "bot_output": [
+      "I dont have a physical body, so i can not cook"
+    ]
+  },
+  {
+    "user_input": [
+      "What's the capital of France?"
+    ],
+    "bot_output": [
+      "The capital of France is Paris."
+    ]
+  }
+]
