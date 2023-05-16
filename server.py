@@ -139,5 +139,4 @@ def configure_settings():
 
 
 if __name__ == '__main__':
-    app.run(host=resolve_dns("https://chatbotinterface.onrender.com/"),
-port=11000)
+    app.run(host=resolve_dns("https://chatbotinterface.onrender.com/"), port=11000)
