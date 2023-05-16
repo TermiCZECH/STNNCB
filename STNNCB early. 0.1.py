@@ -212,23 +212,18 @@ tries = 0
 max_tries = 10  # Maximum number of conversation tries
 previous_inputs = []  # Track previous user inputs
 
-@bot.event
-async def on_message(message):
+# Function to generate a bot response
+def generate_response(input_text):
     global tries  # Declare 'tries' as a global variable
 
-    if message.author == bot.user:
-        return
-
-    input_text = message.content  # Get user input from Discord message
-
     if not input_text:
-        return  # Ignore empty input
+        return ""  # Ignore empty input
 
     previous_inputs.append(input_text)
 
     input_seq = tokenizer.texts_to_sequences([input_text])
     if not input_seq:
-        return  # Ignore input that cannot be tokenized
+        return ""  # Ignore input that cannot be tokenized
 
     min_response_length = len(input_text.split())
 
@@ -250,15 +245,20 @@ async def on_message(message):
         input_seq = np.append(input_seq, predicted_index)
         input_padded = pad_sequences([input_seq], maxlen=max_seq_length, padding="post")
 
-    # Check the channel ID before sending the response
-    if message.channel.id == 1086025739666739301:
-        await message.channel.send(f"Bot: {response}")  # Send the response back to the same channel
+    return response
+
+# Replace the on_message function with a new function for website interaction
+def get_user_input():
+    input_text = input("User: ")  # Get user input from console
+    return input_text
+
+def display_bot_response(response):
+    print(f"Bot: {response}")  # Display the bot response in the console
+
+# Main loop for conversation
+while tries < max_tries:
+    user_input = get_user_input()
+    bot_response = generate_response(user_input)
+    display_bot_response(bot_response)
 
     tries += 1
-
-# Load bot token from config.json
-with open('config.json', 'r') as f:
-    config = json.load(f)
-bot_token = config['bot_token']
-
-bot.run(bot_token)
